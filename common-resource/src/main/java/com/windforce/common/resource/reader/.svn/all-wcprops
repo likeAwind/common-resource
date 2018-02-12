@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/reader
+END
+ReaderHolder.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/reader/ReaderHolder.java
+END
+ExcelReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/reader/ExcelReader.java
+END
+ResourceReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/reader/ResourceReader.java
+END
+JsonReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/reader/JsonReader.java
+END

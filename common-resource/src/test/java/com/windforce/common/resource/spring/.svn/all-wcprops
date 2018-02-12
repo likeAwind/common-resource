@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/test/java/com/my9yu/common/resource/spring
+END
+Config.xlsx
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/test/java/com/my9yu/common/resource/spring/Config.xlsx
+END
+InjectObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/test/java/com/my9yu/common/resource/spring/InjectObject.java
+END
+Config.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/test/java/com/my9yu/common/resource/spring/Config.java
+END
+InjectTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/test/java/com/my9yu/common/resource/spring/InjectTest.java
+END
+InjectTest-context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/test/java/com/my9yu/common/resource/spring/InjectTest-context.xml
+END

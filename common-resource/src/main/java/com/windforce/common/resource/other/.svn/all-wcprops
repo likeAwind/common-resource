@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other
+END
+ResourceDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/3-Server/!svn/ver/7665/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other/ResourceDefinition.java
+END
+FormatDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other/FormatDefinition.java
+END
+GetterBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other/GetterBuilder.java
+END
+IndexGetter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other/IndexGetter.java
+END
+InjectDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other/InjectDefinition.java
+END
+Getter.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other/Getter.java
+END
+InjectType.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/other/InjectType.java
+END

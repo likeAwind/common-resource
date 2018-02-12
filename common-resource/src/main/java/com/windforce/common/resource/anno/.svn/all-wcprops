@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/anno
+END
+Index.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/anno/Index.java
+END
+Resource.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/3-Server/!svn/ver/7665/dev/common/common-resource/src/main/java/com/my9yu/common/resource/anno/Resource.java
+END
+Static.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/anno/Static.java
+END
+Id.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/anno/Id.java
+END
+Inject.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/anno/Inject.java
+END

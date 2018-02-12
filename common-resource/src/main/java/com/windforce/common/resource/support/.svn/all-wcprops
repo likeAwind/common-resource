@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/support
+END
+StringToDateConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/support/StringToDateConverter.java
+END
+StringToMapConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/support/StringToMapConverter.java
+END
+JsonToMapConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/support/JsonToMapConverter.java
+END
+JsonToArrayConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/support/JsonToArrayConverter.java
+END
+StringToClassConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/3-Server/!svn/ver/7/dev/common/common-resource/src/main/java/com/my9yu/common/resource/support/StringToClassConverter.java
+END

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.my9yu.com/common/resource" xmlns="http://www.my9yu.com/common/resource"
+	targetNamespace="http://www.windforce.com/common/resource" xmlns="http://www.windforce.com/common/resource"
 	elementFormDefault="qualified">
 
 	<xsd:element name="config">

@@ -23,10 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.ConverterNotFoundException;
-import org.springframework.core.convert.TypeDescriptor;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -48,7 +44,8 @@ public class ExcelReader implements ResourceReader {
 	/** 结束标识 */
 	private final static String ROW_END = "END";
 
-	private final static TypeDescriptor sourceType = TypeDescriptor.valueOf(String.class);
+	// private final static TypeDescriptor sourceType =
+	// TypeDescriptor.valueOf(String.class);
 
 	@Override
 	public String getFormat() {
@@ -253,9 +250,10 @@ public class ExcelReader implements ResourceReader {
 		return cell.getStringCellValue();
 	}
 
+	/*
 	@Autowired
 	private ConversionService conversionService;
-
+	 */
 	/**
 	 * 给实例注入属性
 	 * 
@@ -263,6 +261,7 @@ public class ExcelReader implements ResourceReader {
 	 * @param field
 	 * @param content
 	 */
+	/*
 	@SuppressWarnings("unused")
 	@Deprecated
 	private void inject(Object instance, Field field, String content) {
@@ -282,6 +281,7 @@ public class ExcelReader implements ResourceReader {
 			throw new IllegalStateException(message.getMessage(), e);
 		}
 	}
+	*/
 
 	/**
 	 * 实例化资源

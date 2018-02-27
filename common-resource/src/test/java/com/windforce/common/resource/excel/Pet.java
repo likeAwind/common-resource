@@ -7,16 +7,8 @@ import com.windforce.common.resource.anno.Resource;
 public class Pet {
 
 	@Id
-	private Integer id;
+	private int id;
 	private String name;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -24,6 +16,14 @@ public class Pet {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

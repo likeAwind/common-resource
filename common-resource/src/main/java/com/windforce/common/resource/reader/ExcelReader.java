@@ -3,9 +3,14 @@ package com.windforce.common.resource.reader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -23,12 +28,16 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.ConverterNotFoundException;
 import org.springframework.core.convert.TypeDescriptor;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.windforce.common.utility.JsonUtils;
 import com.windforce.common.utility.ReflectionUtility;
 
 /**
- * Excel格式的静态资源读取器
- * 
- * @author frank
+ * excel类型转换器
+ * @author Kuang Hao
+ * @since v1.0 2018年2月27日
+ *
  */
 public class ExcelReader implements ResourceReader {
 
@@ -103,7 +112,7 @@ public class ExcelReader implements ResourceReader {
 					if (StringUtils.isEmpty(content)) {
 						continue;
 					}
-					inject(instance, info.field, content);
+					setValue(instance, info.field, content);
 				}
 				result.add(instance);
 
@@ -122,6 +131,113 @@ public class ExcelReader implements ResourceReader {
 			}
 		}
 		return result;
+	}
+
+	private void setValue(Object instance, Field field, String content) {
+		try {
+
+			if (field.getType() == String.class) {
+				field.set(instance, content);
+				return;
+			}
+			if (field.getType() == int.class || field.getType() == Integer.class) {
+				field.set(instance, Integer.valueOf(content));
+				return;
+			}
+			if (field.getType() == long.class || field.getType() == Long.class) {
+				field.set(instance, Long.valueOf(content));
+				return;
+			}
+			if (field.getType() == boolean.class || field.getType() == Boolean.class) {
+				field.set(instance, Boolean.valueOf(content));
+				return;
+			}
+			if (field.getType() == byte.class || field.getType() == Byte.class) {
+				field.set(instance, Byte.valueOf(content));
+				return;
+			}
+			if (content.startsWith("[") || content.startsWith("{")) {
+				// lis对象
+				if (field.getType() == java.util.List.class) {
+					Class<?>[] clazzs = getParameterizedType(field);
+					List<?> list = JsonUtils.string2List(content, clazzs[0]);
+					field.set(instance, list);
+					return;
+				}
+
+				// Map对象
+				if (field.getType() == java.util.Map.class) {
+					Class<?>[] clazzs = getParameterizedType(field);
+					Map<Object, Object> newMap = new HashMap<>();
+					if (clazzs[0] == Integer.class) {
+						TypeReference<Map<Integer, String>> mapType = new TypeReference<Map<Integer, String>>() {
+						};
+						Map<Integer, String> map = JSON.parseObject(content, mapType);
+						for (Entry<Integer, String> entry : map.entrySet()) {
+							Object key = null;
+							key = Integer.valueOf(entry.getKey());
+							Object value = JsonUtils.string2Object(entry.getValue(), clazzs[1]);
+							newMap.put(key, value);
+						}
+					} else if (clazzs[0] == String.class) {
+						TypeReference<Map<String, String>> mapType = new TypeReference<Map<String, String>>() {
+						};
+						Map<String, String> map = JSON.parseObject(content, mapType);
+						for (Entry<String, String> entry : map.entrySet()) {
+							Object key = null;
+							key = String.valueOf(entry.getKey());
+							Object value = JsonUtils.string2Object(entry.getValue(), clazzs[1]);
+							newMap.put(key, value);
+						}
+					} else {
+						String message = String.format("静态资源[%s]属性[%s],属性类型[%s],Map中key的值必须为Integer或者String!",
+								instance.getClass().getSimpleName(), field.getName(), field.getType().getName());
+						logger.error(message);
+						throw new IllegalStateException(message);
+					}
+					field.set(instance, newMap);
+					return;
+				}
+
+				// 对象
+				Object object = JsonUtils.string2Object(content, field.getType());
+				field.set(instance, object);
+				return;
+			}
+
+			String message = String.format("没有找到对应的静态资源[%s]属性[%s],属性类型[%s],内容[%s]的转换处理内容!",
+					instance.getClass().getSimpleName(), field.getName(), field.getType().getName(), content);
+			logger.error(message);
+			throw new IllegalStateException(message);
+
+		} catch (Exception e) {
+			String message = String.format("静态资源[%s]属性[%s],属性类型[%s],内容[%s]的转换失败!", instance.getClass().getSimpleName(),
+					field.getName(), field.getType().getName(), content);
+			logger.error(message, e);
+			throw new IllegalStateException(message, e);
+		}
+	}
+
+	public static Class<?>[] getParameterizedType(Field f) {
+
+		// 获取f字段的通用类型
+		Type fc = f.getGenericType(); // 关键的地方得到其Generic的类型
+
+		// 如果不为空并且是泛型参数的类型
+		if (fc != null && fc instanceof ParameterizedType) {
+			ParameterizedType pt = (ParameterizedType) fc;
+
+			Type[] types = pt.getActualTypeArguments();
+
+			if (types != null && types.length > 0) {
+				Class<?>[] classes = new Class<?>[types.length];
+				for (int i = 0; i < classes.length; i++) {
+					classes[i] = (Class<?>) types[i];
+				}
+				return classes;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -147,6 +263,8 @@ public class ExcelReader implements ResourceReader {
 	 * @param field
 	 * @param content
 	 */
+	@SuppressWarnings("unused")
+	@Deprecated
 	private void inject(Object instance, Field field, String content) {
 		// Class<?> clz = field.getType();
 		try {

@@ -24,7 +24,7 @@ import com.windforce.common.resource.anno.Static;
 @ContextConfiguration
 @Component
 public class BasicTest {
-	
+
 	@Autowired
 	private StorageManager resourceManager;
 	@Static
@@ -37,7 +37,7 @@ public class BasicTest {
 	private Human humanOther;
 	@Static(value = "-1", required = false)
 	private Human humanNotFound;
-	
+
 	/**
 	 * 测试管理对象注入
 	 */
@@ -54,10 +54,13 @@ public class BasicTest {
 		Human p1 = resourceManager.getResource(1, Human.class);
 		assertThat(p1.getId(), is(1));
 		assertThat(p1.getName(), is("Frank"));
+		assertThat(p1.getPet().getName(), is("咪咪"));
+		assertThat(p1.getPetList().get(0).getName(), is("咪咪"));
+		assertThat(p1.getPetMap().get(1).getName(), is("咪咪"));
 		Human same = resourceManager.getResource(1, Human.class);
 		assertThat(p1, sameInstance(same));
 	}
-	
+
 	/**
 	 * 测试指定资源存储空间注入
 	 */
@@ -70,7 +73,7 @@ public class BasicTest {
 		Human same = resourceManager.getResource(1, Human.class);
 		assertThat(p1, sameInstance(same));
 	}
-	
+
 	/**
 	 * 测试唯一索引获取
 	 */
@@ -82,7 +85,7 @@ public class BasicTest {
 		assertThat(p1.getName(), is("Frank"));
 		assertThat(p1, sameInstance(human1));
 	}
-	
+
 	/**
 	 * 测试列表索引获取
 	 */
@@ -91,11 +94,11 @@ public class BasicTest {
 		List<Human> list = storage.getIndex(Human.INDEX_AGE, 32);
 		assertThat(list, notNullValue());
 		assertThat(list.size(), is(2));
-		
+
 		Human p1 = list.get(0);
 		assertThat(p1.getId(), is(3));
 		assertThat(p1.getName(), is("Kyle"));
-		
+
 		Human p2 = list.get(1);
 		assertThat(p2.getId(), is(1));
 		assertThat(p2.getName(), is("Frank"));
@@ -109,19 +112,19 @@ public class BasicTest {
 	@Test
 	public void test_inject_instance() throws InterruptedException {
 		Thread.sleep(1000);
-		
+
 		assertThat(human1, notNullValue());
 		assertThat(human2, notNullValue());
 		assertThat(humanOther, notNullValue());
 		assertThat(humanNotFound, nullValue());
-		
+
 		assertThat(human1.getId(), is(1));
 		assertThat(human1.getName(), is("Frank"));
 
 		assertThat(human2.getId(), is(2));
 		assertThat(human2.getName(), is("May"));
-		
+
 		assertThat(human1, sameInstance(humanOther));
 	}
-	
+
 }

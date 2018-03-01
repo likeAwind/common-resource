@@ -153,6 +153,15 @@ public class ExcelReader implements ResourceReader {
 				field.set(instance, Byte.valueOf(content));
 				return;
 			}
+
+			if (field.getType().isEnum()) {
+				for (Object e : field.getType().getEnumConstants()) {
+					if (e.toString().equals(content)) {
+						field.set(instance, e);
+					}
+				}
+				return;
+			}
 			if (content.startsWith("[") || content.startsWith("{")) {
 				// lis对象
 				if (field.getType() == java.util.List.class) {

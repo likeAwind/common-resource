@@ -31,6 +31,7 @@ public class Human {
 	private List<Pet> petList;
 	private Map<Integer, Pet> petMap;
 	private Pet pet;
+	private LEG legType;
 
 	public Integer getId() {
 		return id;
@@ -86,6 +87,14 @@ public class Human {
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+
+	public LEG getLegType() {
+		return legType;
+	}
+
+	public void setLegType(LEG legType) {
+		this.legType = legType;
 	}
 
 }

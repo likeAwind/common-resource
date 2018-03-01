@@ -1,7 +1,11 @@
 package com.windforce.common.resource.excel;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.sameInstance;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
@@ -72,6 +76,7 @@ public class BasicTest {
 		assertThat(p1.getName(), is("Frank"));
 		Human same = resourceManager.getResource(1, Human.class);
 		assertThat(p1, sameInstance(same));
+		assertEquals(p1.getLegType(), LEG.ONE);
 	}
 
 	/**

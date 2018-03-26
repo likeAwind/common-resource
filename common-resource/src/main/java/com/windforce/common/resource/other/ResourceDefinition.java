@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
@@ -46,20 +47,36 @@ public class ResourceDefinition {
 	private final Set<InjectDefinition> injects = new HashSet<InjectDefinition>();
 
 	private String cacheKey;
+	
+	private List<?> startList;
 
 	public ResourceDefinition(Class<?> clz, FormatDefinition format) {
 		this.clz = clz;
-		this.format = format.getType();
 		Resource anno = clz.getAnnotation(Resource.class);
+		if (!StringUtils.isBlank(anno.format())) {
+			this.format = anno.format();
+		} else {
+			this.format = format.getType();
+		}
+		String suffix = null;
+		if (!StringUtils.isBlank(anno.suffix())) {
+			suffix = anno.suffix();
+		} else {
+			suffix = format.getSuffix();
+		}
+		String location = "";
+		if (!StringUtils.isBlank(anno.location())) {
+			location = anno.location() + FILE_PATH;
+		}
 		if (StringUtils.isBlank(anno.value())) {
 			String name = clz.getSimpleName();
-			this.location = format.getLocation() + FILE_PATH + name + FILE_SPLIT + format.getSuffix();
+			this.location = format.getLocation() + FILE_PATH + location + name + FILE_SPLIT + suffix;
 		} else {
 			String name = anno.value();
 			if (StringUtils.startsWith(name, FILE_PATH)) {
 				name = StringUtils.substringAfter(name, FILE_PATH);
 			}
-			this.location = format.getLocation() + FILE_PATH + name + FILE_SPLIT + format.getSuffix();
+			this.location = format.getLocation() + FILE_PATH + location + name + FILE_SPLIT + suffix;
 		}
 		if (!StringUtils.isBlank(anno.cache())) {
 			cacheKey = anno.cache();
@@ -126,5 +143,13 @@ public class ResourceDefinition {
 
 	public String getCacheKey() {
 		return cacheKey;
+	}
+
+	public List<?> getStartList() {
+		return startList;
+	}
+
+	public void setStartList(List<?> startList) {
+		this.startList = startList;
 	}
 }

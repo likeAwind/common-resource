@@ -22,4 +22,13 @@ public @interface Resource {
 	/** 是否在缓存 */
 	String cache() default "";
 
+	/** 资源格式 */
+	String format() default "";
+
+	/** 资源名字后缀 */
+	String suffix() default "";
+
+	/** 文件目录 */
+	String location() default "";
+
 }

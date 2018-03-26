@@ -245,7 +245,13 @@ public class Storage<K, V> extends Observable implements ApplicationContextAware
 				input = resource.getInputStream();
 			}
 			// 获取存储空间
-			List<V> list = reader.read(input, getClz());
+			List<V> list = null;
+			if (resourceDefinition.getStartList() != null) {
+				list = (List<V>) resourceDefinition.getStartList();
+				resourceDefinition.setStartList(null);
+			} else {
+				list = reader.read(input, getClz());
+			}
 			Iterator<V> it = list.iterator();
 			clear();
 			while (it.hasNext()) {

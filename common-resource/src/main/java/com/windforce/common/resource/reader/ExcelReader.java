@@ -26,6 +26,7 @@ import org.slf4j.helpers.MessageFormatter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.windforce.common.resource.anno.Id;
 import com.windforce.common.utility.JsonUtils;
 import com.windforce.common.utility.ReflectionUtility;
 
@@ -100,16 +101,25 @@ public class ExcelReader implements ResourceReader {
 				}
 				// 生成返回对象
 				E instance = newInstance(clz);
+				boolean end = false;
 				for (FieldInfo info : infos) {
 					Cell cell = row.getCell(info.index);
 					if (cell == null) {
 						continue;
 					}
 					String content = getCellContent(cell);
+
+					if (StringUtils.isEmpty(content) && info.field.isAnnotationPresent(Id.class)) {
+						end = true;
+						break;
+					}
 					if (StringUtils.isEmpty(content)) {
 						continue;
 					}
 					setValue(instance, info.field, content);
+				}
+				if (end) {
+					break;
 				}
 				result.add(instance);
 
@@ -141,12 +151,16 @@ public class ExcelReader implements ResourceReader {
 				field.set(instance, Integer.valueOf(content));
 				return;
 			}
+			if (field.getType() == double.class || field.getType() == Double.class) {
+				field.set(instance, Double.valueOf(content));
+				return;
+			}
 			if (field.getType() == long.class || field.getType() == Long.class) {
 				field.set(instance, Long.valueOf(content));
 				return;
 			}
 			if (field.getType() == boolean.class || field.getType() == Boolean.class) {
-				field.set(instance, Boolean.valueOf(content));
+				field.set(instance, Boolean.valueOf(content.toLowerCase()));
 				return;
 			}
 			if (field.getType() == byte.class || field.getType() == Byte.class) {
